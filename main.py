@@ -1,3 +1,10 @@
+'''
+ShrubiAI is a bot for mom to make recipes with her dietary restrictions and get some basic wellness advice. 
+
+Author: Rishub Handa 
+Get started: uvicorn main:app   
+'''
+
 from fastapi import FastAPI, Form, Response
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
@@ -66,5 +73,11 @@ async def root(ProfileName: str = Form(...), Body: str = Form(...)):
     response = MessagingResponse() 
     msg = response.message(response_body)
     return Response(content=str(response), media_type="application/xml")
+
+@app.get("/")
+async def hello_world(): 
+    return {"message": "hello world!"}
+
+
 
 
